@@ -14,6 +14,7 @@ enum PriorityLevel: Int, PersistableEnum, CaseIterable {
     case medium = 2
     case low = 3
     
+    //computed property that uses above enum to determine case
     var description: String {
         switch self {
         case .severe: return "Severe"

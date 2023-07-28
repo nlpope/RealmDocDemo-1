@@ -15,6 +15,7 @@ struct CreateItemView: View {
     @Binding var isInCreateItemView: Bool
     @State var user: User
     @State var itemSummary = ""
+    @State var priority = PriorityLevel.medium
 
     var body: some View {
         Form {
@@ -24,6 +25,13 @@ struct CreateItemView: View {
                 // we'll bind to a `@State` variable and then assign to the
                 // synced property when the user presses `Save`
                 TextField("New item", text: $itemSummary)
+            }
+            Section(header: Text("Priority")) {
+                Picker(selection: $priority, label: Text("Set priorty")) {
+                    ForEach(PriorityLevel.allCases, id: \.self) { priority in
+                        Text(priority.description)
+                    }
+                }
             }
             Section {
                 Button(action: {
@@ -35,6 +43,7 @@ struct CreateItemView: View {
                     // Appending the new Item object to the ``items``
                     // ObservedResults collection adds it to the
                     // realm in an implicit write.
+                    newItem.priority = priority
                     $items.append(newItem)
                     // Now we're done with this view, so set the
                     // ``isInCreateItemView`` variable to false to

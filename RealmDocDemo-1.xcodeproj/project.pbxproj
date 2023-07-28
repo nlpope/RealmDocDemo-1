@@ -62,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		406B295A2A73E374009B7F21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				913D465D2770E7DF00ABE7D3 /* Item.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		913D463E2770E46800ABE7D3 = {
 			isa = PBXGroup;
 			children = (
@@ -86,8 +94,8 @@
 				913D46502770E46A00ABE7D3 /* Preview Content */,
 				912196BD27C6868100407648 /* atlasConfig.plist */,
 				913D464A2770E46800ABE7D3 /* App.swift */,
-				913D465D2770E7DF00ABE7D3 /* Item.swift */,
 				68D3DF592942677E005209D9 /* Constants.swift */,
+				406B295A2A73E374009B7F21 /* Models */,
 				917097E727A0600000F1D65B /* Views */,
 			);
 			path = "RealmDocDemo-1";
