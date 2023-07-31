@@ -1,6 +1,13 @@
 import SwiftUI
 import RealmSwift
 
+/**
+ Notes
+ working but new priority value isn't being registered for first item
+ 
+ ???: still a bit confused on why the view only displays priority "High" or higher...
+ when the query is telling it to display the opposite; otherwise - I'm done here
+ */
 struct ContentView: View {
     @ObservedObject var app: RealmSwift.App
     @EnvironmentObject var errorHandler: ErrorHandler
@@ -12,17 +19,10 @@ struct ContentView: View {
                 
                 if let foundSubscription = subs.first(named: Constants.myItems) {
                     foundSubscription.updateQuery(toType: Item.self, where: {
+                        //???
                         $0.owner_id == user.id && $0.priority <= PriorityLevel.high
                     })
-                }
-                /**testing
-                 subs.remove(named: Constants.allItems)
-                 if let _ = subs.first(named: Constants.myItems) {
-                 // Existing subscription found - do nothing
-                 return
-                 }
-                 **/
-                else {
+                } else {
                     // No subscription - create it
                     subs.append(QuerySubscription<Item>(name: Constants.myItems) {
                         $0.owner_id == user.id && $0.priority <= PriorityLevel.high
