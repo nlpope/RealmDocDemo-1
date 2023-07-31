@@ -29,6 +29,7 @@ struct ContentView: View {
                     })
                 }
             },rerunOnOpen: true)
+            
             OpenRealmView(user: user)
             // Store configuration in the environment to be opened in next view
                 .environment(\.realmConfiguration, config)
