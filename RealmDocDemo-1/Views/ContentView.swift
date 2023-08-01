@@ -21,6 +21,7 @@ struct ContentView: View {
                     foundSubscription.updateQuery(toType: Item.self, where: {
                         //???
                         $0.owner_id == user.id && $0.priority <= PriorityLevel.high
+                        
                     })
                 } else {
                     // No subscription - create it

@@ -13,6 +13,7 @@ let app = App(id: theAppConfig.appId, configuration: AppConfiguration(baseURL: t
 struct realmSwiftUIApp: SwiftUI.App {
     @StateObject var errorHandler = ErrorHandler(app: app)
 
+
     var body: some Scene {
         WindowGroup {
             ContentView(app: app)
@@ -21,6 +22,7 @@ struct realmSwiftUIApp: SwiftUI.App {
                     Button("OK", role: .cancel) { errorHandler.error = nil }
                 } message: {
                     Text(errorHandler.error?.localizedDescription ?? "")
+                    
                 }
         }
     }
@@ -31,6 +33,9 @@ final class ErrorHandler: ObservableObject {
 
     init(app: RealmSwift.App) {
         // Sync Manager listens for sync errors.
+        // Use the below to test mac realm app (stewart lynch realm vid 2)
+//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
+
         app.syncManager.errorHandler = { syncError, syncSession in
             self.error = syncError
         }
